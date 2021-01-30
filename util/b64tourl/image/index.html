@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64Image2URL</title>
+</head>
+<body>
+    <img id="output">
+    <!--
+        Why?
+        Because most sites don't recognize base64 links as urls.
+        so it will not format the text and users will have to copy them and paste them to browser.
+        This is not fun,neither it is to hosting a web server just for a small project.
+    -->
+    <script>
+        document.getElementById("output").src = JSON.parse(
+            unescape('{"' + window.location.search.substring(1).split("=")[0] + '":"' + window.location.search.substring(1).split("=")[1] + '"}')
+        )["data"]
+    </script>
+</body>
+</html>
